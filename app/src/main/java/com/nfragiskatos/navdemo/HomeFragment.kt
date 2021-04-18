@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.nfragiskatos.navdemo.databinding.FragmentHomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,6 +39,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding.button.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_secondFragment)
+        }
         return binding.root
     }
 
