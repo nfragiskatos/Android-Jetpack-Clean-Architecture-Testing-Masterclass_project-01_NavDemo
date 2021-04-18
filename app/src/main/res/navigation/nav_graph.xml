@@ -24,6 +24,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment_to_enterNameFragment"
+            app:destination="@id/enterNameFragment" />
     </fragment>
     <fragment
         android:id="@+id/secondFragment"
@@ -35,4 +38,9 @@
         android:name="com.nfragiskatos.navdemo.TermsFragment"
         android:label="fragment_terms"
         tools:layout="@layout/fragment_terms" />
+    <fragment
+        android:id="@+id/enterNameFragment"
+        android:name="com.nfragiskatos.navdemo.EnterNameFragment"
+        android:label="fragment_enter_name"
+        tools:layout="@layout/fragment_enter_name" />
 </navigation>
