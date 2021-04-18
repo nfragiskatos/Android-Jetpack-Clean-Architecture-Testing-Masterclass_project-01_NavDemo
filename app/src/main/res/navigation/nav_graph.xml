@@ -51,5 +51,14 @@
         android:id="@+id/enterEmailFragment"
         android:name="com.nfragiskatos.navdemo.EnterEmailFragment"
         android:label="fragment_enter_email"
-        tools:layout="@layout/fragment_enter_email" />
+        tools:layout="@layout/fragment_enter_email" >
+        <action
+            android:id="@+id/action_enterEmailFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.nfragiskatos.navdemo.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" />
 </navigation>
