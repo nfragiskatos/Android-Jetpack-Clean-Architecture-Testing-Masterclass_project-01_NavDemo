@@ -1,9 +1,12 @@
 package com.nfragiskatos.navdemo
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -41,7 +44,13 @@ class EnterNameFragment : Fragment() {
         binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_enter_name, container, false)
 
         binding.enterNameNext.setOnClickListener {
-            it.findNavController().navigate(R.id.action_enterNameFragment_to_enterEmailFragment)
+            if (!TextUtils.isEmpty(binding.enterNameName.text.toString())) {
+                val bundle = bundleOf("user_name" to binding.enterNameName.text.toString())
+                it.findNavController().navigate(R.id.action_enterNameFragment_to_enterEmailFragment, bundle)
+            } else {
+                Toast.makeText(activity, "Please Enter Your Name", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         return binding.root;

@@ -1,11 +1,13 @@
 package com.nfragiskatos.navdemo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.nfragiskatos.navdemo.databinding.FragmentEnterEmailBinding
 
@@ -37,9 +39,18 @@ class EnterEmailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_enter_email, container, false)
+        binding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_enter_email, container, false)
         binding.enterEmailSubmit.setOnClickListener {
-            it.findNavController().navigate(R.id.action_enterEmailFragment_to_welcomeFragment)
+            if (!TextUtils.isEmpty(binding.enterEmailEmail.text.toString())) {
+                val bundle: Bundle = requireArguments()
+                bundle.putString("user_email", binding.enterEmailEmail.text.toString())
+                it.findNavController()
+                    .navigate(R.id.action_enterEmailFragment_to_welcomeFragment, bundle)
+            } else {
+                Toast.makeText(activity, "Please Enter Your E-Mail", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         return binding.root
