@@ -1,11 +1,12 @@
 package com.nfragiskatos.navdemo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.nfragiskatos.navdemo.databinding.FragmentWelcomeBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -36,11 +37,15 @@ class WelcomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_welcome, container, false)
+        binding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_welcome, container, false)
         val name = requireArguments().getString("user_name")
         val email = requireArguments().getString("user_email")
         binding.welcomeName.text = name.toString()
         binding.welcomeEmail.text = email.toString()
+        binding.welcomeViewTerms.setOnClickListener {
+            it.findNavController().navigate(R.id.action_welcomeFragment_to_termsFragment)
+        }
         return binding.root
     }
 

@@ -60,5 +60,9 @@
         android:id="@+id/welcomeFragment"
         android:name="com.nfragiskatos.navdemo.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_termsFragment"
+            app:destination="@id/termsFragment" />
+    </fragment>
 </navigation>
